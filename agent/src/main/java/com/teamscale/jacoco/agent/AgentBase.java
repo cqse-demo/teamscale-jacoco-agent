@@ -67,6 +67,7 @@ public abstract class AgentBase {
 	 */
 	private void registerShutdownHook() {
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+			logger.debug("Triggered shutdown hook");
 			prepareShutdown();
 			logger.info("CQSE JaCoCo agent successfully shut down.");
 			loggingResources.close();

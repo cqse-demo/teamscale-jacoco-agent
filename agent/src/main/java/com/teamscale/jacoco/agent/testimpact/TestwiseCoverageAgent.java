@@ -30,8 +30,10 @@ public class TestwiseCoverageAgent extends AgentBase {
 	/** Constructor. */
 	public TestwiseCoverageAgent(AgentOptions options) throws IllegalStateException {
 		super(options);
+		logger.debug("Starting testwise coverage agent");
 		this.options = options;
 		initServer();
+		logger.info("Listening for test events on port {}.", options.getHttpServerPort());
 	}
 
 	/**

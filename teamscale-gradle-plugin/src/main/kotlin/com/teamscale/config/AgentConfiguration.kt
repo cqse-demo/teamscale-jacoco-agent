@@ -103,6 +103,7 @@ class AgentConfiguration(val project: Project, val jacocoExtension: JacocoTaskEx
             argument.append("includes", jacocoExtension.includes)
             argument.append("excludes", jacocoExtension.excludes)
             argument.append("http-server-port", url.port())
+            argument.append("logging-config", "/path to your/agent/src/dist/logging/logback.debug.xml") //TODO
         }
     }
 }

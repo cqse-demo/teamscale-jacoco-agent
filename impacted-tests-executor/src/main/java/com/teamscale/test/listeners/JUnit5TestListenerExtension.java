@@ -57,6 +57,7 @@ public class JUnit5TestListenerExtension implements TestExecutionListener {
 
 	@Override
 	public void executionStarted(TestIdentifier testIdentifier) {
+		logger.debug("Test started " + testIdentifier.getUniqueId());
 		if (testIdentifier.isTest()) {
 			String testUniformPath = TestIdentifierUtils.getTestUniformPath(testIdentifier, logger);
 			try {
@@ -72,6 +73,7 @@ public class JUnit5TestListenerExtension implements TestExecutionListener {
 
 	@Override
 	public void executionFinished(TestIdentifier testIdentifier, TestExecutionResult testExecutionResult) {
+		logger.debug("Test finished " + testIdentifier.getUniqueId());
 		if (testIdentifier.isTest()) {
 			String testUniformPath = TestIdentifierUtils.getTestUniformPath(testIdentifier, logger);
 			try {
@@ -84,6 +86,9 @@ public class JUnit5TestListenerExtension implements TestExecutionListener {
 			long executionEndTime = System.currentTimeMillis();
 			long duration = executionEndTime - executionStartTime;
 			String message = getStacktrace(testExecutionResult.getThrowable());
+			if (message != null) {
+				logger.error(message);
+			}
 			switch (testExecutionResult.getStatus()) {
 				case SUCCESSFUL:
 					testExecutions.add(new TestExecution(testUniformPath, duration, ETestExecutionResult.PASSED));
@@ -114,6 +119,7 @@ public class JUnit5TestListenerExtension implements TestExecutionListener {
 
 	@Override
 	public void executionSkipped(TestIdentifier testIdentifier, String reason) {
+		logger.debug("Test skipped " + testIdentifier.getUniqueId());
 		List<TestIdentifier> testIdentifiers = collectTestIdentifiers(testIdentifier);
 		for (TestIdentifier identifier : testIdentifiers) {
 			String testUniformPath = TestIdentifierUtils.getTestUniformPath(identifier, logger);
