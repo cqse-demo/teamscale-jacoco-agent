@@ -25,6 +25,7 @@ public abstract class UploadStoreBase<T> implements IXmlStore {
 
 	/** The logger. */
 	protected final Logger logger = LoggingUtils.getLogger(this);
+	protected final Logger logger2 = LoggingUtils.getLogger(this);
 
 	/** The store to write failed uploads to. */
 	protected final TimestampedFileStore failureStore;
