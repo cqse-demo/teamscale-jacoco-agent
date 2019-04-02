@@ -1,3 +1,4 @@
+test
 # Teamscale JaCoCo Agent [![Build Status](https://travis-ci.com/cqse/teamscale-jacoco-agent.svg?branch=master)](https://travis-ci.com/cqse/teamscale-jacoco-agent)
 
 ## Download
